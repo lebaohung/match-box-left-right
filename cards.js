@@ -6,6 +6,7 @@ var data = {
         '氵户': '沪',
         '火户': '炉'
     },
+    pairFlow : [['女'], ['亻']],
     correctMap : {
         '女' : {
             '女子': '好 hǎo',
@@ -163,13 +164,13 @@ function resetSelection() {
 }
 
 
-var charList;
+var charList = [];
 var board = [];
 
 window.onload = function () {
     resetTimer();
-    shuffleCards();
-    startGame();
+    shuffleCards2(0);
+    startGame2(0);
 }
 
 function shuffleCards() {
@@ -182,6 +183,24 @@ function shuffleCards() {
         charList[i] = charList[j];
         charList[j] = temp;
     }
+}
+
+function shuffleCards2(centerIndex) {
+    for (let i = 0; i < data.pairFlow[centerIndex].length ; i++) {
+        for (const outerKey in data.correctMap[data.pairFlow[centerIndex][i]]) {
+            const innerKeys = outerKey.replace(data.pairFlow[centerIndex][i], "");
+            charList.push(innerKeys)
+        }
+    }
+    //shuffle
+    for (let i = 0; i < charList.length; i++) {
+        let j = Math.floor(Math.random() * charList.length); //get random index
+        //swap
+        let temp = charList[i];
+        charList[i] = charList[j];
+        charList[j] = temp;
+    }
+    console.log("charList " + charList);
 }
 
 // function startGame() {
@@ -206,10 +225,63 @@ function shuffleCards() {
 //     }
 // }
 
-function startGame2() {
+function startGame2(centerIndex) {
 
-    for (let center in data.correctMap) {
-        
+    if (centerIndex < data.pairFlow.length) {
+        for (let i = 0; i < data.pairFlow[centerIndex].length; i++) {
+            let center = document.createElement("button");
+            center.setAttribute("id", "center");
+            center.setAttribute("class", "side-buttons, clickable");
+            center.textContent = data.pairFlow[centerIndex][i];
+            center.setAttribute("disabled", true)
+
+            center.addEventListener("click", selectComponent);
+            document.getElementById("board").append(center);
+        }
+
+        for (let j = 0; j < Math.floor(charList.length / 4) ; j++) {
+            let top = document.createElement("button");
+            top.setAttribute("class", "clickable");
+            top.textContent = charList.pop();
+            top.setAttribute("disabled", true)
+
+            top.addEventListener("click", selectComponent);
+            document.getElementById("topId").append(top);
+        }
+
+        for (let j = 0; j < Math.floor(charList.length / 4); j++) {
+            let left = document.createElement("button");
+            left.setAttribute("class", "clickable");
+            left.textContent = charList.pop();
+            left.setAttribute("disabled", true)
+
+            left.addEventListener("click", selectComponent);
+            document.getElementById("leftId").append(left);
+        }
+
+        for (let j = 0; j < Math.floor(charList.length / 4); j++) {
+            let right = document.createElement("button");
+            right.setAttribute("class", "clickable");
+            right.textContent = charList.pop();
+            right.setAttribute("disabled", true)
+
+            right.addEventListener("click", selectComponent);
+            document.getElementById("rightId").append(right);
+        }
+
+        for (let i = 0; i < charList.length; i++) {
+            let bottom = document.createElement("button");
+            bottom.setAttribute("class", "clickable");
+            bottom.textContent = charList.pop();
+            bottom.setAttribute("disabled", true)
+
+            bottom.addEventListener("click", selectComponent);
+            document.getElementById("bottomId").append(bottom);
+
+        }
+
+    } else {
+        remainingTime = 0;
     }
     
     

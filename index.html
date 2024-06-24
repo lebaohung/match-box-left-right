@@ -12,30 +12,30 @@
 
     <body>
         <div id="board">
-            <button id="center" class="side-buttons">Center</button>
+<!--            <button id="center" class="side-buttons">Center</button>-->
             <div class="top side-buttons" id="topId">
-                <button class="clickable">Top 1</button>
-                <button class="clickable">Top 2</button>
-                <button class="clickable">Top 3</button>
-                <button class="clickable">Top 4</button>
+<!--                <button class="clickable">Top 1</button>-->
+<!--                <button class="clickable">Top 2</button>-->
+<!--                <button class="clickable">Top 3</button>-->
+<!--                <button class="clickable">Top 4</button>-->
             </div>
             <div class="bottom side-buttons" id="bottomId">
-                <button>Bottom 1</button>
-                <button>Bottom 2</button>
-                <button>Bottom 3</button>
-                <button>Bottom 4</button>
+<!--                <button>Bottom 1</button>-->
+<!--                <button>Bottom 2</button>-->
+<!--                <button>Bottom 3</button>-->
+<!--                <button>Bottom 4</button>-->
             </div>
             <div class="left side-buttons" id="leftId">
-                <button>Left 1</button>
-                <button>Left 2</button>
-                <button>Left 3</button>
-                <button>Left 4</button>
+<!--                <button>Left 1</button>-->
+<!--                <button>Left 2</button>-->
+<!--                <button>Left 3</button>-->
+<!--                <button>Left 4</button>-->
             </div>
             <div class="right side-buttons" id="rightId">
-                <button>Right 1</button>
-                <button>Right 2</button>
-                <button>Right 3</button>
-                <button>Right 4</button>
+<!--                <button>Right 1</button>-->
+<!--                <button>Right 2</button>-->
+<!--                <button>Right 3</button>-->
+<!--                <button>Right 4</button>-->
             </div>
         </div>
         <div style="color: #d9d7cb" id="timer">01:00</div>
@@ -54,7 +54,6 @@
 
         document.querySelectorAll('.clickable').forEach(button => {
             button.addEventListener('click', function() {
-                // Reset the background color of the previously clicked button
                 if (lastClickedButton) {
                     lastClickedButton.classList.remove('clicked');
                     lastClickedButton = null;
@@ -62,12 +61,7 @@
                     this.classList.add('clicked');
                     lastClickedButton = this;
                 }
-
-                // Change the background color of the currently clicked button
-                // this.classList.add('clicked');
-
-                // Store the currently clicked button
-                // lastClickedButton = this;
+           
             });
         });
     </script>
