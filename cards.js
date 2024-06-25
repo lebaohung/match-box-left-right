@@ -140,7 +140,7 @@ function selectComponent(event) {
             if (!correctPair.includes(result)) {
                 correctPair.push(result);
             }
-            document.getElementById("score").innerHTML  = "Score: " + correctPair.length;
+            document.getElementById("score").innerHTML  = "- Score: " + correctPair.length;
             checkNextLevel();
         } else {
            result = '错误组合'; 
@@ -183,7 +183,7 @@ var board = [];
 
 window.onload = function () {
     resetTimer();
-    nextLevel(2)
+    nextLevel(0)
 }
 
 function nextLevel(centerIndex) {

@@ -32,7 +32,13 @@ body {
         width: 40%;
     }
     button {
-        width: 4em !important;
+        width: 3em !important;
+    }
+}
+
+@media (max-width: 900px) {
+    button{
+        font-size: 1em !important;
     }
 }
 
@@ -67,7 +73,7 @@ button:hover {
 }
 
 .result {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #b35a27;
 }
@@ -100,5 +106,5 @@ button:hover {
 
 #center {
     z-index: 1;
-
+    margin-right: 10px;
 }
