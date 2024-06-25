@@ -183,7 +183,7 @@ var board = [];
 
 window.onload = function () {
     resetTimer();
-    nextLevel(0)
+    nextLevel(2)
 }
 
 function nextLevel(centerIndex) {
