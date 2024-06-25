@@ -82,7 +82,7 @@ var data = {
     result: ''
 }
 let timerInterval;
-let maxMin = 5;
+let maxMin = 3.75;
 let remainingTime = maxMin * 60000; // 5 minutes in milliseconds
 let correctPair = [];
 
@@ -129,7 +129,7 @@ function stopTimer() {
 function resetTimer() {
     stopTimer();
     remainingTime = maxMin * 60000; // Reset to 5 minutes
-    document.getElementById('timer').textContent = '0%d:00'.replace("%d", maxMin.toString());
+    document.getElementById('timer').textContent = '0%d:%s'.replace("%d", Math.floor(maxMin).toString()).replace("%s", ((maxMin - Math.floor(maxMin)) * 60000 / 1000).toString());
     document.getElementById('message').textContent = ''; // Clear any previous message
     disableButtonsInDiv('board');
 }
