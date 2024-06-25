@@ -1,8 +1,8 @@
 var data = {
-    pairFlow : [['女'], ['亻'], ['口','又'], ['氵',' 讠'], ['饣','扌','日']],
+    pairFlow : [['女'], ['亻'], ['氵','讠'], ['饣','扌','日'], ['口','又']],
     incorrectMap: {
-        '女' : ['日',' 甘','曷','末'],
-        '亻' : ['日',' 那','找']
+        '女' : ['日','甘','曷','末'],
+        '亻' : ['日','那','找']
     },
     correctMap: {
         '女' : ['子','也','马','未','且','生'],
@@ -26,7 +26,7 @@ var data = {
         '亻尔': '你 nǐ',
         '亻也': '他 tā',
         '亻我': '俄 é',
-        '亻言': '信 xīn ',
+        '亻言': '信 xīn',
         '亻本': '体 tǐ',
         '亻生': '住 zhù',
         '亻立': '位 wèi',
@@ -41,26 +41,40 @@ var data = {
         '口乞': '吃 chī',
         '口卑': '啤 pí',
         '口斤': '听 tīng',
+        '口那': '哪 nǎ',
+        '口隹': '唯 wéi',
+        '口寸': '吋 cùn',
+        '口鸟': '鸣 míng',
+        '口欠': '吹 chuī',
+        
         '氵又': '汉 hàn',
         '氵去': '法 fǎ',
         '氵殳': '没 méi',
         '氵气': '汽 qì',
-        ' 讠巷': '港 xiāng',
-        ' 讠酉': '酒 jiǔ',
-        ' 讠青': '请 qǐng',
-        ' 讠射': '谢 xiè',
-        ' 讠舌': '话 huà',
+        '氵巷': '港 xiāng',
+        '氵酉': '酒 jiǔ',
+        '氵青': '清 qīng',
+        '氵舌': '活 huó',
+        
+        '讠青': '请 qǐng',
+        '讠射': '谢 xiè',
+        '讠舌': '话 huà',
+        '讠殳': '设 shè',
+
         '又隹': '难 nán',
         '又寸': '对 duì',
         '又鸟': '鸡 jī',
         '又欠': '欢 huān',
+        
         '饣反': '欢 huān',
         '饣官': '馆 guǎn',
         '饣曼': '馒 mán',
         '饣交': '饺 jiǎo',
+        
         '扌戈': '找 zhǎo',
         '扌奂': '换 huàn',
         '扌受': '授 shòu',
+        
         '日月': '明 míng',
         '日乍': '昨 zuó'
     },
@@ -68,8 +82,8 @@ var data = {
     result: ''
 }
 let timerInterval;
-let remainingTime = 180000; // 5 minutes in milliseconds
-
+let maxMin = 5
+let remainingTime = maxMin * 60000; // 5 minutes in milliseconds
 let correctPair = [];
 
 function updateTime() {
@@ -114,8 +128,8 @@ function stopTimer() {
 
 function resetTimer() {
     stopTimer();
-    remainingTime = 180000; // Reset to 5 minutes
-    document.getElementById('timer').textContent = '03:00';
+    remainingTime = maxMin * 60000; // Reset to 5 minutes
+    document.getElementById('timer').textContent = '0%d:00'.replace("%d", maxMin.toString());
     document.getElementById('message').textContent = ''; // Clear any previous message
     disableButtonsInDiv('board');
 }
