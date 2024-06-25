@@ -283,7 +283,6 @@ function startGame(centerIndex) {
         }
 
     } else {
-        console.log("out")
         remainingTime = 0;
     }
 }
