@@ -66,7 +66,7 @@ var data = {
         '又鸟': '鸡 jī',
         '又欠': '欢 huān',
         
-        '饣反': '欢 huān',
+        '饣反': '饭 fàn',
         '饣官': '馆 guǎn',
         '饣曼': '馒 mán',
         '饣交': '饺 jiǎo',
@@ -82,7 +82,7 @@ var data = {
     result: ''
 }
 let timerInterval;
-let maxMin = 5
+let maxMin = 5;
 let remainingTime = maxMin * 60000; // 5 minutes in milliseconds
 let correctPair = [];
 
@@ -134,7 +134,7 @@ function resetTimer() {
     disableButtonsInDiv('board');
 }
 
-let timer;
+let resultTimer;
 
 function selectComponent(event) { 
     const selected = event.target.innerHTML;
@@ -147,24 +147,22 @@ function selectComponent(event) {
     }
 
     if (selectedComponents.length === 2) {
-        clearTimeout(timer)
+        clearTimeout(resultTimer)
         const combined = selectedComponents.join('');
         let result = correctCombinations[combined];
         if (result) {
             if (!correctPair.includes(result)) {
                 correctPair.push(result);
             }
-            document.getElementById("score").innerHTML  = "- Score: " + correctPair.length;
+            document.getElementById("score").innerHTML = "- Score: " + correctPair.length;
             checkNextLevel();
         } else {
-           result = '错误组合'; 
+            result = '错误组合';
         }
         
-        data.result = result;
         document.getElementById("result").innerHTML  = result;
         data.selectedComponents = [];
-        data.result = '';
-        timer = resetSelection();
+        resultTimer = resetSelection();
     }
 }
 
@@ -215,6 +213,7 @@ function shuffleCards(centerIndex) {
             charList.push(...data.incorrectMap[data.pairFlow[centerIndex][i]]);
         }
     }
+    charList = [...new Set(charList)];
     //shuffle
     for (let i = 0; i < charList.length; i++) {
         let j = Math.floor(Math.random() * charList.length); //get random index
