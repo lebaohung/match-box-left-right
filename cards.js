@@ -85,6 +85,7 @@ let timerInterval;
 let maxMin = 3.75;
 let remainingTime = maxMin * 60000; // 5 minutes in milliseconds
 let correctPair = [];
+let yourLife = 3;
 
 function updateTime() {
     if (remainingTime > 0) {
@@ -94,6 +95,8 @@ function updateTime() {
         disableButtonsInDiv('board')
         if (correctPair.length === Object.keys(data.correctCombinations).length) {
             document.getElementById('message').textContent = 'You winnn!';
+        } else if (yourLife ===0) {
+            document.getElementById('message').textContent = 'Out of 3 incorrect chooses';
         } else {
             document.getElementById('message').textContent = 'Time is up!';
         }
@@ -156,7 +159,10 @@ function selectComponent(event) {
             }
             document.getElementById("score").innerHTML = "- Score: " + correctPair.length;
             checkNextLevel();
-        } else {
+        } else {``
+            if (--yourLife === 0) {
+                remainingTime = 0;   
+            }
             result = '错误组合';
         }
         
